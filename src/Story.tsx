@@ -23,6 +23,7 @@ export const Story = ({
   avatarSize,
   showAvatarText,
   avatarTextStyle,
+  customAvatar,
 }: StoryProps) => {
   const [dataState, setDataState] = useState<IUserStory[]>(data);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -147,15 +148,24 @@ export const Story = ({
   return (
     <Fragment>
       <View style={style}>
-        <StoryCircleListView
-          handleStoryItemPress={_handleStoryItemPress}
-          data={dataState}
-          avatarSize={avatarSize}
-          unPressedBorderColor={unPressedBorderColor}
-          pressedBorderColor={pressedBorderColor}
-          showText={showAvatarText}
-          textStyle={avatarTextStyle}
-        />
+        {!props?.customAvatar ? (
+          <StoryCircleListView
+            handleStoryItemPress={_handleStoryItemPress}
+            data={dataState}
+            avatarSize={avatarSize}
+            unPressedBorderColor={unPressedBorderColor}
+            pressedBorderColor={pressedBorderColor}
+            showText={showAvatarText}
+            textStyle={avatarTextStyle}
+          />
+        ) : (
+          <TouchableOpacity
+            onPress={_handleStoryItemPress}
+            style={{ marginTop: 50 }}
+          >
+            {props?.customAvatar()}
+          </TouchableOpacity>
+        )}
       </View>
       <Modal
         style={{

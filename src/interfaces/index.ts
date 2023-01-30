@@ -89,6 +89,7 @@ export interface StoryProps {
   customSwipeUpComponent?: ReactNode;
   /** A custom close component */
   customCloseComponent?: ReactNode;
+  customAvatar?: ReactNode;
   /** Display username below avatars in FlatList */
   showAvatarText?: boolean;
   /** Username text style below the avatar */
